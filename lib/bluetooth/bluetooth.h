@@ -71,15 +71,19 @@ struct bt_security {
 
 #define BT_DEFER_SETUP	7
 
-#define BT_FLUSHABLE	8
+#define BT_FLUSHABLE	10
 
 #define BT_FLUSHABLE_OFF	0
 #define BT_FLUSHABLE_ON		1
 
-#define BT_POWER	9
+#define BT_POWER	8
 struct bt_power {
 	uint8_t force_active;
 };
+#define BT_AMP_POLICY	9
+#define BT_AMP_POLICY_REQUIRE_BR_EDR	0
+#define BT_AMP_POLICY_PREFER_AMP		1
+#define BT_AMP_POLICY_PREFER_BR_EDR		2
 
 /* Connection and socket states */
 enum {

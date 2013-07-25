@@ -1605,11 +1605,6 @@ static void read_bd_addr_complete(int index, read_bd_addr_rp *rp)
 
 static inline void cs_inquiry_evt(int index, uint8_t status)
 {
-	if (status) {
-		error("Inquiry Failed with status 0x%02x", status);
-		return;
-	}
-
 	set_state(index, DISCOV_INQ);
 }
 
@@ -1745,11 +1740,6 @@ static inline void inquiry_complete_evt(int index, uint8_t status)
 	int adapter_type;
 	struct btd_adapter *adapter;
 
-	if (status) {
-		error("Inquiry Failed with status 0x%02x", status);
-		return;
-	}
-
 	adapter = manager_find_adapter_by_id(index);
 	if (!adapter) {
 		error("No matching adapter found");
@@ -1770,11 +1760,6 @@ static inline void inquiry_complete_evt(int index, uint8_t status)
 
 static inline void cc_inquiry_cancel(int index, uint8_t status)
 {
-	if (status) {
-		error("Inquiry Cancel Failed with status 0x%02x", status);
-		return;
-	}
-
 	set_state(index, DISCOV_HALTED);
 }
 

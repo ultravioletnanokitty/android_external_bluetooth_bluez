@@ -34,7 +34,7 @@ extern "C" {
 
 #define HCI_MAX_DEV	16
 
-#define HCI_MAX_ACL_SIZE	1024
+#define HCI_MAX_ACL_SIZE	1500
 #define HCI_MAX_SCO_SIZE	255
 #define HCI_MAX_EVENT_SIZE	260
 #define HCI_MAX_FRAME_SIZE	(HCI_MAX_ACL_SIZE + 4)
@@ -92,6 +92,7 @@ enum {
 #define HCIGETCONNLIST	_IOR('H', 212, int)
 #define HCIGETCONNINFO	_IOR('H', 213, int)
 #define HCIGETAUTHINFO	_IOR('H', 215, int)
+#define HCISETAUTHINFO	_IOR('H', 216, int)
 
 #define HCISETRAW	_IOW('H', 220, int)
 #define HCISETSCAN	_IOW('H', 221, int)
@@ -2117,9 +2118,10 @@ typedef struct {
 	uint8_t		bdaddr_type;
 	bdaddr_t	bdaddr;
 	uint8_t		length;
-	uint8_t		data[0];
+	uint8_t		data[31];
+	uint8_t		rssi;
 } __attribute__ ((packed)) le_advertising_info;
-#define LE_ADVERTISING_INFO_SIZE 9
+#define LE_ADVERTISING_INFO_SIZE 41
 
 #define EVT_LE_CONN_UPDATE_COMPLETE	0x03
 typedef struct {
